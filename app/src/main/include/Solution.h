@@ -37,6 +37,8 @@ public:
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2);
     int lengthOfLongestSubstring(string s);
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2);
+    string longestPalindrome(string s);
+    string zigzagconvert(string s, int numRows);
 };
 
 
