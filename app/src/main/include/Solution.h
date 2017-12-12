@@ -7,9 +7,11 @@
 
 #include <vector>
 #include <string>
+#include <stack>
 #include <iostream>
 #include <map>
 #include <unordered_map>
+#include <stdexcept>
 
 /**
  * Definition for singly-linked list.
@@ -23,11 +25,13 @@ struct ListNode {
 };
 
 using std::vector;
+using std::stack;
 using std::string;
 using std::ios;
 using std::cin;
 using std::map;
 using std::unordered_map;
+using std::runtime_error;
 
 class Solution {
 private:
@@ -38,7 +42,11 @@ public:
     int lengthOfLongestSubstring(string s);
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2);
     string longestPalindrome(string s);
-    string zigzagconvert(string s, int numRows);
+    string zigzagConvert(string s, int numRows);
+    int reverseInteger(int x);
+    int myAtoi(string str);
+    bool isPalindrome(int x);
+    bool isMatch(string s, string p);
 };
 
 

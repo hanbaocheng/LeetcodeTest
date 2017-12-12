@@ -9,7 +9,7 @@ static const auto ____ = [](){
     return nullptr;
 }();
 
-string Solution::zigzagconvert(string s, int numRows) {
+string Solution::zigzagConvert(string s, int numRows) {
     string zigzag;
     int unit = numRows + numRows - 2;
     if (numRows == 1) unit = 1;
