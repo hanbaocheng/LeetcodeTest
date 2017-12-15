@@ -47,6 +47,11 @@ public:
     int myAtoi(string str);
     bool isPalindrome(int x);
     bool isMatch(string s, string p);
+    int maxArea(vector<int>& height);
+    string intToRoman(int num);
+    int romanToInt(string s);
+    string longestCommonPrefix(vector<string>& strs);
+    vector<vector<int>> threeSum(vector<int>& nums);
 };
 
 
