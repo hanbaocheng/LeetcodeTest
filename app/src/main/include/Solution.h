@@ -55,6 +55,7 @@ public:
     string longestCommonPrefix(vector<string>& strs);
     vector<vector<int>> threeSum(vector<int>& nums);
     int threeSumClosest(vector<int>& nums, int target);
+    vector<string> letterCombinations(string digits);
 };
 
 
