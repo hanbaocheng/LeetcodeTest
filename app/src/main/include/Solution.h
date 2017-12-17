@@ -12,6 +12,7 @@
 #include <map>
 #include <unordered_map>
 #include <stdexcept>
+#include <algorithm>
 
 /**
  * Definition for singly-linked list.
@@ -32,6 +33,7 @@ using std::cin;
 using std::map;
 using std::unordered_map;
 using std::runtime_error;
+using std::sort;
 
 class Solution {
 private:
@@ -52,6 +54,7 @@ public:
     int romanToInt(string s);
     string longestCommonPrefix(vector<string>& strs);
     vector<vector<int>> threeSum(vector<int>& nums);
+    int threeSumClosest(vector<int>& nums, int target);
 };
 
 
