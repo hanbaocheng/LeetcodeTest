@@ -103,3 +103,45 @@ int Solution::threeSumClosest(vector<int> &nums, int target) {
 
     return (right - target < target - left) ? right : left;
 }
+
+vector<vector<int>> Solution::fourSum(vector<int> &nums, int target) {
+    sort(nums.begin(), nums.end());
+    vector<vector<int>> ret;
+
+    if (nums.size() < 4)
+        return ret;
+
+    int size = nums.size();
+    for (int i = 0; i < size - 3; ++i) {
+        int a = nums[i];
+        for (int j = i + 1; j < size - 2; ++j) {
+            int b = nums[j];
+
+            if (a + b > target)
+                break;
+
+            int start = j + 1;
+            int end = size - 1;
+            while (start < end) {
+                int sum = a + b + nums[start] + nums[end];
+
+                if (sum == target) {
+                    ret.push_back({a,b,nums[start], nums[end]});
+                    --end;
+                    while(nums[end] == nums[end+1]) --end;
+                } else if (sum > target) {
+                    --end;
+                } else {
+                    ++start;
+                }
+            }
+
+            while(j + 1 < size - 2 && nums[j] == nums[j + 1])
+                ++j;
+        }
+        while(i + 1 < size - 3 && nums[i] == nums[i + 1])
+            ++i;
+    }
+
+    return ret;
+}

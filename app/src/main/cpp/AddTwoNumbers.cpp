@@ -70,4 +70,67 @@ ListNode *Solution::addTwoNumbers(ListNode *l1, ListNode *l2) {
     }
 }
 
+ListNode *Solution::removeNthFromEnd(ListNode *head, int n) {
+    int size = 0;
+    ListNode header(0);
+    header.next = head;
+
+    ListNode* itor = header.next;
+    while (itor) {
+        size++;
+        itor = itor->next;
+    }
+
+    itor = &header;
+    int del = size -n;
+    while (del > 0 && itor) {
+        itor = itor->next;
+    }
+    ListNode* delNode = itor->next;
+    itor->next = delNode->next;
+    delete delNode;
+
+    return header.next;
+}
+
+
+ListNode* Solution::mergeTwoLists(ListNode *l1, ListNode *l2) {
+    ListNode header(0);
+    ListNode* l3 = &header;
+
+    ListNode* head1 = l1;
+    ListNode* head2 = l2;
+    ListNode* head3 = l3;
+
+    while (head1 || head2) {
+        if (head1 == nullptr) {
+            head3->next = head2;
+            break;
+        }
+        if (head2 == nullptr) {
+            head3->next = head1;
+            break;
+        }
+
+        if(head1->val == head2->val) {
+            head3->next = head1;
+            head3 = head3->next;
+            head1 = head1->next;
+
+            head3->next = head2;
+            head3 = head3->next;
+            head2 = head2->next;
+        } else if (head1->val > head2->val) {
+            head3->next = head2;
+            head3 = head3->next;
+            head2 = head2->next;
+        } else {
+            head3->next = head1;
+            head3 = head3->next;
+            head1 = head1->next;
+        }
+    }
+
+    return l3->next;
+}
 

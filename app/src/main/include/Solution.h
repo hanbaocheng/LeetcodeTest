@@ -56,6 +56,11 @@ public:
     vector<vector<int>> threeSum(vector<int>& nums);
     int threeSumClosest(vector<int>& nums, int target);
     vector<string> letterCombinations(string digits);
+    vector<vector<int>> fourSum(vector<int>& nums, int target);
+    ListNode* removeNthFromEnd(ListNode* head, int n);
+    bool isValidParentheses(string s);
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2);
+    vector<string> generateParenthesis(int n);
 };
 
 
