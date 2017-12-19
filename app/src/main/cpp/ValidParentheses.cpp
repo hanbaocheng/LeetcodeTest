@@ -42,15 +42,21 @@ bool Solution::isValidParentheses(string s) {
     return bracket.size() == 0;
 }
 
-void dp(char start, int n, vector<string>& ret){
 
-}
-
-vector<string> Solution::generateParenthesis(int n) {
-    vector<string> ret;
-    for (int i = n -1; i >= 0; --i) {
-        
+void dp(string candidate, int sum, int unpaired, int n, vector<string>& ret) {
+    if(sum < 0 || sum > unpaired )
+        return;
+    if (unpaired == 0) {
+        ret.push_back(candidate);
+        return;
     }
 
+    dp(candidate + "(", sum + 1, unpaired, n, ret);
+    dp(candidate + ")", sum - 1, unpaired - 1, n, ret);
+
+}
+vector<string> Solution::generateParenthesis(int n) {
+    vector<string> ret;
+    dp("", 0, n, n, ret);
     return ret;
 }

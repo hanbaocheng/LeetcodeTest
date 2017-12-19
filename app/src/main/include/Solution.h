@@ -36,8 +36,8 @@ using std::runtime_error;
 using std::sort;
 
 class Solution {
-private:
-
+public:
+    ListNode* getList(vector<int> list);
 public:
     std::vector<int> twoSum(vector<int>& nums, int target);
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2);
@@ -61,6 +61,8 @@ public:
     bool isValidParentheses(string s);
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2);
     vector<string> generateParenthesis(int n);
+    ListNode* mergeKLists(vector<ListNode*>& lists);
+    ListNode* swapPairs(ListNode* head);
 };
 
 
