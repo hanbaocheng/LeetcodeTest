@@ -198,3 +198,41 @@ ListNode* Solution::swapPairs(ListNode *head) {
 
     return header.next;
 }
+
+ListNode* Solution::reverseKGroup(ListNode *head, int k) {
+    ListNode header(0);
+    header.next = head;
+    ListNode* l = &header;
+
+    while(l->next) {
+        /*int i = k;
+        ListNode* end = l->next;
+        while(i > 0) {
+            if (end == nullptr)
+                break;
+            end = end->next;
+            i--;
+        }
+
+        if (i > 0)
+            break;
+        */
+        ListNode* last = l->next;
+        for (int i = 0; i < k - 1 && last; i++) {
+            ListNode* second = last->next;
+
+            if(second == nullptr) {
+                last = l->next;
+                i = k - 1 - i - 1;
+                continue;
+            }
+
+            last->next = second->next;
+            second->next = l->next;
+            l->next = second;
+        }
+
+        l = last;
+    }
+    return header.next;
+}

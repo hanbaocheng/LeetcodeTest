@@ -63,6 +63,8 @@ public:
     vector<string> generateParenthesis(int n);
     ListNode* mergeKLists(vector<ListNode*>& lists);
     ListNode* swapPairs(ListNode* head);
+    ListNode* reverseKGroup(ListNode* head, int k);
+    int removeDuplicates(vector<int>& nums);
 };
 
 
