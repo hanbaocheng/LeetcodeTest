@@ -65,6 +65,8 @@ public:
     ListNode* swapPairs(ListNode* head);
     ListNode* reverseKGroup(ListNode* head, int k);
     int removeDuplicates(vector<int>& nums);
+    int removeElement(vector<int>& nums, int val);
+    int strStr(string haystack, string needle);
 };
 
 
