@@ -13,10 +13,25 @@ int Solution::divide(int dividend, int divisor) {
     }
 
     int ret = 0; bool flag = (dividend & 0x80000000) ^ (divisor & 0x80000000);
-    if (dividend < 0)
-        dividend *= -1;
     if (divisor < 0)
+    {
+        if (divisor == INT32_MIN) {
+            if (dividend == INT32_MIN)
+                return 1;
+            else return 0;
+        }
         divisor *= -1;
+    }
+
+
+    if (dividend < 0) {
+        if (dividend == INT32_MIN)
+        {
+            dividend += divisor;
+            ret++;
+        }
+        dividend *= -1;
+    }
 
     int factor = 1;
     int aDivisior = divisor * factor;
