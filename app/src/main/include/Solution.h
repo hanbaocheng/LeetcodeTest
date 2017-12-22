@@ -67,6 +67,7 @@ public:
     int removeDuplicates(vector<int>& nums);
     int removeElement(vector<int>& nums, int val);
     int strStr(string haystack, string needle);
+    int divide(int dividend, int divisor);
 };
 
 
