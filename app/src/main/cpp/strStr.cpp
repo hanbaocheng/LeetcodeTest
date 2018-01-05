@@ -38,75 +38,73 @@ int Solution::strStr(string haystack, string needle) {
     return j == pSize ? i - j : -1;
 }
 
-void dp(map<int, bool> &memo, int start, string s, vector<string>& words, vector<int>& ret) {
-    if (memo.find(start) != memo.end()) {
-        return;
-    }
-
-    int wordlen = words[0].size();
-    int sublen = wordlen * words.size();
-
-    if (start > s.size() - sublen)
-        return;
-
-    map<int, int> index_to_string;
-    for (int i = 0; i < words.size(); ++i) {
-        int index = s.find(words[i], start);
-        if (index == s.npos) {
-            return;
-        }
-
-        while (index_to_string.find(index) != index_to_string.end()) {
-            index = s.find(words[i], index + wordlen);
-            if (index == s.npos) {
-                return;
-            }
-        }
-        index_to_string[index] = i;
-    }
-
-    while (index_to_string.size() == words.size()) {
-        int first = index_to_string.begin()->first;
-        int last = index_to_string.rbegin()->first;
-        int next = last + wordlen;
-        if (next - first == sublen) {
-            memo[first] = true;
-            ret.push_back(first);
-            int size = memo.size();
-
-            int firstword = index_to_string[first];
-            if (s.find(words[firstword], next) == next) {
-                index_to_string[next] = firstword;
-                index_to_string.erase(first);
-            } else {
-                dp(memo, next, s, words, ret);
-                break;
-            }
-            dp(memo, first + 1, s, words, ret);
-        } else {
-            memo[first] = false;
-            int firstword = index_to_string[first];
-            int pos = s.find(words[firstword], first + wordlen);
-            while (index_to_string.find(pos) != index_to_string.end()) {
-                pos = s.find(words[firstword], pos + wordlen);
-            }
-
-            if (pos != s.npos) {
-                index_to_string[pos] = firstword;
-                index_to_string.erase(first);
-            } else {
-                return;
-            }
-        }
-    }
-    return;
-}
-
 vector<int> Solution::findSubstring(string s, vector<string>& words) {
     vector<int> ret;
-    map<int, bool> memo;
-    dp(memo, 0, s, words, ret);
-    sort( ret.begin(), ret.end() );
-    ret.erase( unique( ret.begin(), ret.end() ), ret.end() );
+    map<string, int> dict;
+
+
+    auto resetDict = [&dict, words](){
+        for (int i = 0; i < words.size(); ++i) {
+            string str = words[i];
+            dict[str] = 0;
+        }
+
+        for (int i = 0; i < words.size(); ++i) {
+            dict[words[i]] =  ++dict[words[i]];
+        }
+    };
+
+    auto findFirstMatch = [s, words](int start)->int{
+        int min = s.find(words[0],start);
+        if (min == s.npos)
+            return -1;
+
+        for (int i = 1; i < words.size(); ++i) {
+            int index = s.find(words[i],start);
+            if (index < min )
+                min = index;
+
+        }
+        return min;
+    };
+
+    auto isMatch = [&dict]()->bool {
+        for (auto const &item: dict) {
+            if (item.second != 0)
+                return false;
+        }
+        return true;
+    };
+
+    int start = 0;
+    int sSize = s.size();
+    int wSize = words[0].size();
+    int lSize = words.size() * wSize;
+
+    while (sSize - start >= lSize) {
+        int begin = findFirstMatch(start);
+        if (begin == -1)
+            break;
+
+        start = begin;
+        resetDict();
+
+        int i = 0;
+        for ( i = 0; i < words.size(); ++i) {
+            string word = s.substr(begin, wSize);
+            if (dict.find(word) == dict.end()) {
+                break;
+            } else {
+                dict[word] = --dict[word];
+            }
+            begin += wSize;
+        }
+
+        if (i == words.size() && isMatch()) {
+            ret.push_back(begin - lSize);
+        }
+        start = start + 1;
+    }
+
     return ret;
 }
