@@ -60,3 +60,42 @@ vector<string> Solution::generateParenthesis(int n) {
     dp("", 0, n, n, ret);
     return ret;
 }
+
+int Solution::longestValidParentheses(string s) {
+    vector<char> stack1;
+    vector<int> indices;
+    indices.push_back(0);
+
+    int maxlen = 0;
+    for (int i = 0; i < s.size(); ++i) {
+        char ch = s[i];
+
+        if(stack1.size() == 0 || ch == '(') {
+            stack1.push_back(ch);
+            indices.push_back(i);
+            continue;
+        }
+
+        if (ch == ')') {
+            if (stack1.size() != 0 && stack1[stack1.size() - 1] == '(') {
+                stack1.pop_back();
+                indices.pop_back();
+                continue;
+            } else {
+                stack1.push_back(ch);
+                indices.push_back(i);
+            }
+        }
+    }
+
+    indices.push_back(s.size());
+
+
+    for (int i = 0; i < indices.size() - 1; ++i) {
+        int len = indices[i+1] - indices[i] - 1;
+        if (len > maxlen)
+            maxlen = len;
+    }
+    return maxlen;
+}
+
