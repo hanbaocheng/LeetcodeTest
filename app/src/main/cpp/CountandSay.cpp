@@ -2,9 +2,11 @@
 // Created by Baocheng Han on 3/13/18.
 //
 #include "Solution.h"
-const static auto ______ = [](){
+
+static const auto ______ = [](){
     ios::sync_with_stdio(false);
     cin.tie();
+    return nullptr;
 }();
 
 string Solution::countAndSay(int n) {
