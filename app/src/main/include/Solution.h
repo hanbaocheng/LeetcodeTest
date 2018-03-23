@@ -13,6 +13,7 @@
 #include <unordered_map>
 #include <stdexcept>
 #include <algorithm>
+#include <set>
 
 /**
  * Definition for singly-linked list.
@@ -34,11 +35,23 @@ using std::map;
 using std::unordered_map;
 using std::runtime_error;
 using std::sort;
+using std::set;
 
 class Solution {
 public:
     ListNode* getList(vector<int> list);
 public:
+    //Sort method
+    void bubble_sort(vector<int>& list);
+    void insertion_sort(vector<int>& list);
+    void selection_sort(vector<int>& list);
+    void merge_sort(vector<int>& list);
+    void quick_sort(vector<int>& list);
+
+    //Google:
+    // Bus line
+    vector<int> findBestBusline(vector<vector<int>>& buslines, int start, int end);
+    string decompressStr(string s);
     std::vector<int> twoSum(vector<int>& nums, int target);
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2);
     int lengthOfLongestSubstring(string s);
@@ -75,6 +88,12 @@ public:
     vector<int> searchRange(vector<int>& nums, int target);
     bool isValidSudoku(vector<vector<char>>& board);
     void solveSudoku(vector<vector<char>>& board);
+    string countAndSay(int n);
+    vector<vector<int>> combinationSum(vector<int> &candidates, int target);
+    int firstMissingPositive(vector<int>& nums);
+    int trap(vector<int>& height);
+    string multiply(string num1, string num2);
+    bool isMatchWildcard(string s, string p);
 };
 
 

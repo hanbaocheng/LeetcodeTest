@@ -16,7 +16,7 @@
  * @return
  */
 
-void findCombination(vector<vector<int>> &ret, set<int>& candidates, vector<int>& path, int target, int start){
+void findCombination(vector<vector<int>> &ret, map<int, int>& candidates, vector<int>& path, int target, int start){
     if (target < 0)
         return;
 
@@ -24,25 +24,35 @@ void findCombination(vector<vector<int>> &ret, set<int>& candidates, vector<int>
         ret.push_back(path);
     }
 
-    for (const int &item: candidates) {
-        if(item < start)
+    for (std::pair<const int, int> &item: candidates) {
+        if(item.first < start)
             continue;
-        int next = target - item;
 
-        path.push_back(item);
-        findCombination(ret, candidates, path, next, item);
+        if (item.second == 0)
+            continue;
+
+        int next = target - item.first;
+
+        item.second = item.second - 1;
+        path.push_back(item.first);
+        findCombination(ret, candidates, path, next, item.first);
         path.pop_back();
+        item.second = item.second + 1;
     }
 }
 
 vector<vector<int>> Solution::combinationSum(vector<int> &candidates, int target) {
     vector<vector<int>> ret;
-    set<int> candiset;
+    map<int, int> candimap;
     for (int item: candidates) {
-        candiset.insert(item);
+        if (candimap.find(item) != candimap.end()) {
+            candimap[item] += 1;
+        } else {
+            candimap[item] = 1;
+        }
     }
 
     vector<int> path;
-    findCombination(ret, candiset, path, target, 0);
+    findCombination(ret, candimap, path, target, 0);
     return ret;
 }
