@@ -11,8 +11,8 @@ Java_com_example_hanbaocheng_medionfileexplorer_MainActivity_stringFromJNI(
         jobject /* this */) {
     std::string hello = "Hello from C++";
     Solution solution;
-    vector<int> list = {6,4,2,0,3,2,0,3,1,4,5,3,2,7,5,3,0,1,2,1,3,4,6,8,1,3};
-    solution.trap(list);
+    vector<int> list = {1,2,3};
+    solution.permute(list);
     return env->NewStringUTF(hello.c_str());
 }
 extern "C"

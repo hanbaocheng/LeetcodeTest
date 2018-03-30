@@ -23,7 +23,7 @@ struct ListNode {
     int val;
     ListNode *next;
 
-    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x=0) : val(x), next(nullptr) {}
 };
 
 using std::vector;
@@ -36,6 +36,9 @@ using std::unordered_map;
 using std::runtime_error;
 using std::sort;
 using std::set;
+using std::reverse;
+using std::swap;
+using std::pair;
 
 class Solution {
 public:
@@ -94,6 +97,12 @@ public:
     int trap(vector<int>& height);
     string multiply(string num1, string num2);
     bool isMatchWildcard(string s, string p);
+    int jump(vector<int>& nums);
+    vector<vector<int>> permute(vector<int>& nums);
+    void rotate(vector<vector<int>>& matrix);
+    vector<vector<string>> groupAnagrams(vector<string>& strs);
+    double myPow(double x, int n);
+    vector<vector<string>> solveNQueens(int n);
 };
 
 
